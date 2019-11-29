@@ -1,19 +1,17 @@
 package com.study.utils;
 
-import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.pool.DruidDataSourceFactory;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
-
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Properties;
 
 public class JDBCUtil {
     private static DataSource ds;
-    static{
 
+    static{
         try {
             Properties pro = new Properties();
             InputStream is =JDBCUtil.class.getClassLoader().getResourceAsStream("druid.properties");
@@ -33,7 +31,7 @@ public class JDBCUtil {
     /**
      * 获取Connection对象
      */
-    public static Connection getConnection() throws Exception{
+    public static Connection getConnection() throws SQLException {
         return ds.getConnection();
     }
 
